@@ -1,0 +1,63 @@
+#tooltip_gw_extract_bar {
+    position: absolute;    
+    font-size: 12px;
+    width:  auto;
+    height: auto;
+    pointer-events: none;
+    background: whitesmoke;
+    border: 1px black;
+    color: grey;
+    padding: 5px 5px 5px 5px;
+}
+
+#tooltip_geo_map {
+    position: absolute;    
+    font-size: 12px;
+    width:  auto;
+    height: auto;
+    pointer-events: none;
+    background: whitesmoke;
+    border: 1px black;
+    color: grey;
+    padding: 5px 5px 5px 5px;
+}
+
+#tooltip_sector_usage {
+    position: absolute;    
+    font-size: 12px;
+    width:  auto;
+    height: auto;
+    pointer-events: none;
+    background: whitesmoke;
+    border: 1px black;
+    color: grey;
+    padding: 5px 5px 5px 5px;
+}
+
+
+#tooltip_per_capita_water {
+    position: absolute;    
+    font-size: 15px;
+    width:  auto;
+    height: auto;
+    pointer-events: none;
+    background: whitesmoke;
+    border: 1px black;
+    color: grey;
+    padding: 5px 5px 5px 5px;
+}
+.gw_extract_bar:hover {
+    fill: rgb(15, 153, 238);
+  }
+  
+  .scene3_maps {
+    display: flex;
+    width: 100%;
+  }
+  
+  .scene3_maps_child  {
+    flex: 1;
+    border: 1px solid red;
+    margin: 10px;
+    padding: 1rem 1rem;
+  }
