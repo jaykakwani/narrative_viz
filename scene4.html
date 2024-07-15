@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name='author' content='Jay Kakwani'>
+    <title>The Narrative of India Water Crisis</title>
+    <!-- Load css files -->
+    <link rel='stylesheet' type='text/css' href='styles/style.css'>
+    <!-- Load d3.js libraries -->
+    <script src='https://d3js.org/d3.v6.min.js'></script>    
+    <script src="https://unpkg.com/topojson-client@3"></script>
+
+    <!-- <script src="https://d3js.org/topojson.v2.min.js"></script> -->
+    <!-- <script type="module" src="https://unpkg.com/topojson-client@3"></script> -->
+</head>
+
+<body>
+    <div id='header'>
+        <h1 style="text-align:center">India Water Crisis</h1>
+    </div>
+    <a href="scene3.html">Back</a>    
+    <a href="index.html">Start</a>  
+    <!-- Texts -->
+    <div id='scene4_text_41'>
+        <p>Rainfall  </p>
+    </div>    
+    <br>
+    <div id="state_selection_div">
+        <p>State Selection</p>
+        <select id="select-state"></select>
+    </div>
+    <div class='scene4_maps'>        
+        
+        <div class='scene4_maps_child' id="scene4_district_state_map">                             
+        </div>
+
+        <div class='scene4_maps_child' id="scene4_district_country_map">
+          <!-- <div id="scene4_country_maps">
+            <p>Country Map</p>            
+          </div>   -->
+        </div>        
+
+    </div>
+    <br>
+    <div id="footer">
+        <p>&copy; 2024 by Jay Kakwani. All right reserved.</p>
+    </div>
+    <!-- Load custom scripts -->
+    <script type="text/javascript" src='scripts/district_state_map.js' charset='utf-8'></script>  
+</body>
+</html>

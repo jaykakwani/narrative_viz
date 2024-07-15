@@ -61,3 +61,15 @@
     margin: 10px;
     padding: 1rem 1rem;
   }
+
+  .scene4_maps {
+    display: flex;
+    width: 100%;
+  }
+  
+  .scene4_maps_child  {
+    flex: 1;
+    border: 1px solid red;
+    margin: 10px;
+    padding: 1rem 1rem;
+  }
