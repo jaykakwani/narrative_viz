@@ -10,38 +10,29 @@
     <link rel='stylesheet' type='text/css' href='styles/style.css'>
     <!-- Load d3.js libraries -->
     <script src='https://d3js.org/d3.v6.min.js'></script>
+    <!-- Load d3-annotation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-annotation/2.5.1/d3-annotation.min.js"></script>
 </head>
 
 <body>
     <div id='header'>
-        <h1 style="text-align:center">India Water Crisis</h1>
+        <h1 style="text-align:center; padding-top:1px; color: rgb(110, 104, 104);">India Annual Per-Capita Water Availability</h1>
+        <hr>
+        <br>
     </div>
-    <a href="index.html">Back</a>
-    <a href="scene3.html">Next</a>
-    <div id='scene2_text_21'>
-        <p> 200,00 people die in India each year due to lack of access to safe drinking water </p>
-    </div>    
-    <br>
     <div>
-    <p>Annual per-capita water availability of less than 1700 cubic meter is considered as water stressed condition 
-        whereas annual per-capita water availability below 1000 cubic meters is considered as a water scarcity condition.
-    Fresh water availability has dropped more than 70% since 1951.
+    <p class="chart-caption">The per capita water availability in the country is reducing due to increase in population.Based on the study titled 
+        <i>"Reassessment of Water Availability in India using Space Inputs, 2019"</i> <br> conducted by Central Water Commission, 
+        the average annual per capita water availability for year 2021 and 2031 has been assessed as <br>1486 cubic meter and 1367 cubic meter respectively.             
     </p>
     </div>
     <div id='scene2_per_capita_water_usage'>  
     </div>
-    <br>
-    <div>
-        <p>Agriculture is the largest user of water in India and the trend hasn't changed much in the last few years. 
-            Water use by sector data shows the total water consumption for an activity in a year and is categorized as 
-            agriculture (which includes dairy and allied sectors), industries and domestic use (including drinking water).
-        </p>
+    <div style="text-align: center;" >
+    <a href="scene1.html"><button class="viz_button">Back</button></a>
+    <a href="scene3.html"><button class="viz_button">Next</button></a>
     </div>
-    <div id='scene2_sector_usage'>  
-    </div>
-    <div id="footer">
-        <p>&copy; 2024 by Jay Kakwani. All right reserved.</p>
-    </div>
+
 
     <!-- Load custom scripts -->
     <script type="text/javascript" src='scripts/per_capita_water_usage.js' charset='utf-8'></script>  

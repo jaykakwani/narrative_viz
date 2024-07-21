@@ -7285,8 +7285,8 @@
                     "type": "Polygon",
                     "properties": {
                         "dt_code": "001",
-                        "dtname": "Kupwara",
-                        "stname": "JAMMU & KASHMIR",
+                        "district": "Kupwara",
+                        "st_nm": "JAMMU & KASHMIR",
                         "st_code": "01",
                         "year": "2011_c"
                     }
@@ -7316,8 +7316,8 @@
                     "type": "Polygon",
                     "properties": {
                         "dt_code": "009",
-                        "dtname": "Bandipore",
-                        "stname": "JAMMU & KASHMIR",
+                        "district": "Bandipore",
+                        "st_nm": "JAMMU & KASHMIR",
                         "st_code": "01",
                         "year": "2011_c"
                     }
@@ -7347,8 +7347,8 @@
                     "type": "Polygon",
                     "properties": {
                         "dt_code": "008",
-                        "dtname": "Baramula",
-                        "stname": "JAMMU & KASHMIR",
+                        "district": "Baramula",
+                        "st_nm": "JAMMU & KASHMIR",
                         "st_code": "01",
                         "year": "2011_c"
                     }
@@ -7377,8 +7377,8 @@
                     "type": "Polygon",
                     "properties": {
                         "dt_code": "011",
-                        "dtname": "Ganderbal",
-                        "stname": "JAMMU & KASHMIR",
+                        "district": "Ganderbal",
+                        "st_nm": "JAMMU & KASHMIR",
                         "st_code": "01",
                         "year": "2011_c"
                     }
@@ -7423,8 +7423,8 @@
                     "type": "Polygon",
                     "properties": {
                         "dt_code": "014",
-                        "dtname": "Anantnag",
-                        "stname": "JAMMU & KASHMIR",
+                        "district": "Anantnag",
+                        "st_nm": "JAMMU & KASHMIR",
                         "st_code": "01",
                         "year": "2011_c"
                     }
@@ -7448,8 +7448,8 @@
                     "type": "Polygon",
                     "properties": {
                         "dt_code": "018",
-                        "dtname": "Kishtwar",
-                        "stname": "JAMMU & KASHMIR",
+                        "district": "Kishtwar",
+                        "st_nm": "JAMMU & KASHMIR",
                         "st_code": "01",
                         "year": "2011_c"
                     }
@@ -7481,8 +7481,8 @@
                     "type": "Polygon",
                     "properties": {
                         "dt_code": "010",
-                        "dtname": "Srinagar",
-                        "stname": "JAMMU & KASHMIR",
+                        "district": "Srinagar",
+                        "st_nm": "JAMMU & KASHMIR",
                         "st_code": "01",
                         "year": "2011_c"
                     }
@@ -7506,8 +7506,8 @@
                     "type": "Polygon",
                     "properties": {
                         "dt_code": "002",
-                        "dtname": "Badgam",
-                        "stname": "JAMMU & KASHMIR",
+                        "district": "Badgam",
+                        "st_nm": "JAMMU & KASHMIR",
                         "st_code": "01",
                         "year": "2011_c"
                     }
@@ -7538,8 +7538,8 @@
                     "type": "Polygon",
                     "properties": {
                         "dt_code": "012",
-                        "dtname": "Pulwama",
-                        "stname": "JAMMU & KASHMIR",
+                        "district": "Pulwama",
+                        "st_nm": "JAMMU & KASHMIR",
                         "st_code": "01",
                         "year": "2011_c"
                     }
@@ -7571,8 +7571,8 @@
                     "type": "Polygon",
                     "properties": {
                         "dt_code": "005",
-                        "dtname": "Punch",
-                        "stname": "JAMMU & KASHMIR",
+                        "district": "Punch",
+                        "st_nm": "JAMMU & KASHMIR",
                         "st_code": "01",
                         "year": "2011_c"
                     }
@@ -7595,8 +7595,8 @@
                     "type": "Polygon",
                     "properties": {
                         "dt_code": "013",
-                        "dtname": "Shupiyan",
-                        "stname": "JAMMU & KASHMIR",
+                        "district": "Shupiyan",
+                        "st_nm": "JAMMU & KASHMIR",
                         "st_code": "01",
                         "year": "2011_c"
                     }
@@ -7631,8 +7631,8 @@
                     "type": "Polygon",
                     "properties": {
                         "dt_code": "015",
-                        "dtname": "Kulgam",
-                        "stname": "JAMMU & KASHMIR",
+                        "district": "Kulgam",
+                        "st_nm": "JAMMU & KASHMIR",
                         "st_code": "01",
                         "year": "2011_c"
                     }
@@ -7669,8 +7669,8 @@
                     "type": "Polygon",
                     "properties": {
                         "dt_code": "006",
-                        "dtname": "Rajouri",
-                        "stname": "JAMMU & KASHMIR",
+                        "district": "Rajouri",
+                        "st_nm": "JAMMU & KASHMIR",
                         "st_code": "01",
                         "year": "2011_c"
                     }
@@ -7701,8 +7701,8 @@
                     "type": "Polygon",
                     "properties": {
                         "dt_code": "017",
-                        "dtname": "Ramban",
-                        "stname": "JAMMU & KASHMIR",
+                        "district": "Ramban",
+                        "st_nm": "JAMMU & KASHMIR",
                         "st_code": "01",
                         "year": "2011_c"
                     }
@@ -7741,8 +7741,8 @@
                     "type": "Polygon",
                     "properties": {
                         "dt_code": "020",
-                        "dtname": "Reasi",
-                        "stname": "JAMMU & KASHMIR",
+                        "district": "Reasi",
+                        "st_nm": "JAMMU & KASHMIR",
                         "st_code": "01",
                         "year": "2011_c"
                     }
@@ -7769,8 +7769,8 @@
                     "type": "Polygon",
                     "properties": {
                         "dt_code": "016",
-                        "dtname": "Doda",
-                        "stname": "JAMMU & KASHMIR",
+                        "district": "Doda",
+                        "st_nm": "JAMMU & KASHMIR",
                         "st_code": "01",
                         "year": "2011_c"
                     }
@@ -7808,8 +7808,8 @@
                     "type": "Polygon",
                     "properties": {
                         "dt_code": "021",
-                        "dtname": "Jammu",
-                        "stname": "JAMMU & KASHMIR",
+                        "district": "Jammu",
+                        "st_nm": "JAMMU & KASHMIR",
                         "st_code": "01",
                         "year": "2011_c"
                     }
@@ -7833,8 +7833,8 @@
                     "type": "Polygon",
                     "properties": {
                         "dt_code": "007",
-                        "dtname": "Kathua",
-                        "stname": "JAMMU & KASHMIR",
+                        "district": "Kathua",
+                        "st_nm": "JAMMU & KASHMIR",
                         "st_code": "01",
                         "year": "2011_c"
                     }
@@ -7882,8 +7882,8 @@
                     "type": "MultiPolygon",
                     "properties": {
                         "dt_code": "019",
-                        "dtname": "Udhampur",
-                        "stname": "JAMMU & KASHMIR",
+                        "district": "Udhampur",
+                        "st_nm": "JAMMU & KASHMIR",
                         "st_code": "01",
                         "year": "2011_c"
                     }
@@ -7916,8 +7916,8 @@
                     "type": "Polygon",
                     "properties": {
                         "dt_code": "022",
-                        "dtname": "Samba",
-                        "stname": "JAMMU & KASHMIR",
+                        "district": "Samba",
+                        "st_nm": "JAMMU & KASHMIR",
                         "st_code": "01",
                         "year": "2011_c"
                     }
@@ -7943,8 +7943,8 @@
                     "type": "Polygon",
                     "properties": {
                         "dt_code": "992",
-                        "dtname": "Muzaffarabad",
-                        "stname": "JAMMU & KASHMIR",
+                        "district": "Muzaffarabad",
+                        "st_nm": "JAMMU & KASHMIR",
                         "st_code": "01",
                         "year": "2011_c"
                     }
@@ -7967,8 +7967,8 @@
                     "type": "Polygon",
                     "properties": {
                         "dt_code": "991",
-                        "dtname": "Mirpur",
-                        "stname": "JAMMU & KASHMIR",
+                        "district": "Mirpur",
+                        "st_nm": "JAMMU & KASHMIR",
                         "st_code": "01",
                         "year": "2011_c"
                     }

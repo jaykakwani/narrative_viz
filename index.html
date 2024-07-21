@@ -10,22 +10,27 @@
     <link rel='stylesheet' type='text/css' href='styles/style.css'>
     <!-- Load d3.js libraries -->
     <script src='https://d3js.org/d3.v7.min.js'></script>
+    <!-- Load d3-annotation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-annotation/2.5.1/d3-annotation.min.js"></script>
+
+    
 </head>
 
 <body>
-    <div id='header'>
-        <h1 style="text-align:center">India Water Crisis</h1>
+    <div id='header'>        
+        <h1 style="text-align:center; padding-top:1px; color: rgb(110, 104, 104);">India Water Crisis</h1>
+        <hr>
+        <br>
+        <img src="images/kids_drinking.jpg" id="index-image">
+        <br>
     </div>
-    <a href="scene2.html">Next</a>
-    <div id='introDivId'>
-        <p> Water insecurity is a large-scale problem in most parts of the world. It is even more so in developing countries like India where access to safe drinking water is still a piped dream for many. </p>
-    </div>   
-    <br>
-    <div id='intro-bar-chart'>        
-    </div>
-    <br>
-    <div id="footer">
-        <p>&copy; 2024 by Jay Kakwani. All right reserved.</p>
+    <div style="text-align: center;">
+        <p class="chart-caption" "> 200,000 people die in India each year due to lack of access to safe drinking water. </p>        
+        <p class="chart-caption">Narrative Visualization by Jay Kakwani</p>
+        <hr>
+        <br>
+        <a href="scene1.html"><button class="viz_button">Begin Journey</button></a>
+        
     </div>
 
     <!-- Load custom scripts -->

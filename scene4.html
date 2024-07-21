@@ -11,43 +11,31 @@
     <!-- Load d3.js libraries -->
     <script src='https://d3js.org/d3.v6.min.js'></script>    
     <script src="https://unpkg.com/topojson-client@3"></script>
-
-    <!-- <script src="https://d3js.org/topojson.v2.min.js"></script> -->
-    <!-- <script type="module" src="https://unpkg.com/topojson-client@3"></script> -->
+   <!-- Load d3-annotation -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-annotation/2.5.1/d3-annotation.min.js"></script>
 </head>
 
 <body>
     <div id='header'>
-        <h1 style="text-align:center">India Water Crisis</h1>
+        <h1 style="text-align:center; padding-top:1px; color: rgb(110, 104, 104);">India Ground Water Levels</h1>
+        <hr>
     </div>
-    <a href="scene3.html">Back</a>    
-    <a href="index.html">Start</a>  
+
     <!-- Texts -->
-    <div id='scene4_text_41'>
-        <p>Rainfall  </p>
+    <div id='scene4_text_31'>
+        <p class="chart-caption"> Every year, the Central Ground Water Board(CGWB) measures level of water in wells located across India to understand the depletion happening due to consumption
+            and recharge happening due to rainfall. Based on the ratio of recharge and extraction(also called as ground water development), they mark the block/zone as 
+            safe, semi-critical, critical, or overexploited. This data helps government form programs and policies targeting the overexploited areas. </p>
     </div>    
-    <br>
-    <div id="state_selection_div">
-        <p>State Selection</p>
-        <select id="select-state"></select>
+    <div class='scene4_maps'>
+        <div class='scene4_maps_child' id="scene4_district_country_map">  
+        </div>       
     </div>
-    <div class='scene4_maps'>        
-        
-        <div class='scene4_maps_child' id="scene4_district_state_map">                             
+    <div style="text-align: center;">
+        <a href="scene3.html"><button class="viz_button">Back</button></a>    
+        <a href="scene5.html"><button class="viz_button">Next</button></a>  
         </div>
-
-        <div class='scene4_maps_child' id="scene4_district_country_map">
-          <!-- <div id="scene4_country_maps">
-            <p>Country Map</p>            
-          </div>   -->
-        </div>        
-
-    </div>
-    <br>
-    <div id="footer">
-        <p>&copy; 2024 by Jay Kakwani. All right reserved.</p>
-    </div>
     <!-- Load custom scripts -->
-    <script type="text/javascript" src='scripts/district_state_map.js' charset='utf-8'></script>  
+    <script type="text/javascript" src='scripts/district_country_map.js' charset='utf-8'></script>  
 </body>
 </html>
