@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name='author' content='Jay Kakwani'>
+    <title>The Narrative of India Water Crisis</title>
+    <!-- Load css files -->
+    <link rel='stylesheet' type='text/css' href='styles/style.css'>
+    <!-- Load d3.js libraries -->
+    <script src='https://d3js.org/d3.v6.min.js'></script>    
+    <script src="https://unpkg.com/topojson-client@3"></script>
+
+    <!-- <script src="https://d3js.org/topojson.v2.min.js"></script> -->
+    <!-- <script type="module" src="https://unpkg.com/topojson-client@3"></script> -->
+</head>
+
+<body id="scene7_body">
+    <div id='header'>
+        <h1 style="text-align:center; padding-top:1px; color: rgb(110, 104, 104);">Explore India's Rainfall, Per-Capita water and Groundwater metrics</h1>
+        <hr>
+    </div>
+    <!-- Texts -->
+    <!-- <div id='scene7_text'>
+        <p class="chart-caption">With climate change, rainfall pattern is becoming erratic and difficult to predict and plan for.
+            The number of consecutive years with excess or scanty rainfall is increasing every decade. 
+            This has severe impact on weather, agriculture, natural disasters, and other linked areas. </p>
+    </div>     -->
+    
+  
+
+    <div id="state_selection_div" style="text-align:center; color: rgb(110, 104, 104);">
+        <div id="Metric_Button">
+            <label for="select-metric">Select Metric </label>
+            <input type="radio" name="MetricRadioButton" value="rainfall" checked>
+            <label for="rainfall">Rainfall</label>
+            <input type="radio" name="MetricRadioButton" value="percapita">
+            <label for="percapita">Per-Capita Water</label>
+            <input type="radio" name="MetricRadioButton" value="gwstatus">
+            <label for="gwusage">Groundwater Status</label>
+          </div>
+          <br>
+        <label for="select-state" id="select-state-label">Select State</label>
+        <select id="select-state" style="margin-left: 20px;"></select>
+        <div id="scene7_affordance_div">                             
+        </div>
+    </div>
+    <div class='scene7_maps'>        
+        
+        <div class='scene7_maps_child' id="scene7_district_state_map">                             
+        </div>
+        <div class='scene7_maps_child' id="scene7_district_country_map">
+        </div>        
+
+    </div>
+    <div style="text-align: center;">
+        <a href="scene6.html"><button class="viz_button">Back</button></a>    
+        <a href="index.html"><button class="viz_button">Start</button></a>  
+    </div>
+    <!-- Load custom scripts -->
+    <script type="text/javascript" src='scripts/explore_state_map.js' charset='utf-8'></script>  
+</body>
+</html>

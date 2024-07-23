@@ -4,11 +4,11 @@ var width = WD - margin.left - margin.right
 var height = HT - margin.top - margin.bottom
 
 
-var tooltip = d3.select("#scene4_district_country_map").append("div")
+var tooltip = d3.select("#scene6_district_country_map").append("div")
   .attr("class", "tooltip")
   .style("opacity", 0);
 
-var svg = d3.select("#scene4_district_country_map")
+var svg = d3.select("#scene6_district_country_map")
             .append("svg")                
                 .attr("width",WD)
                 .attr("height",HT)
@@ -19,7 +19,7 @@ var svg = d3.select("#scene4_district_country_map")
 // Affordance 
 
 var aff_svg = d3.select("body")
-            .select("#scene4_district_country_map")
+            .select("#scene6_district_country_map")
             .append("svg")
                 .attr("id","svg-affordance")             
                 .attr("width", width + margin.left + margin.right)
@@ -62,26 +62,25 @@ var tooltip_div = d3.select("body").append("div")
      .style("padding", "5px")
      .style("opacity", 0);
 
-var gw_dist_status = new Map();
+var percapita_dist_status = new Map();
 var unique_states = new Set();
 
-var keys = ['Over-exploited', 'Critical', 'Semi-critical', 'Safe' ]
+var keys = ['Absolute scarcity [<500 m3]', 'Scarcity [500−1000 m3]', 'Stress [1000−1700 m3]', 'No Stress [>1700 m3]' ]
 
-var gw_status_colorscale = d3.scaleOrdinal()
+var percapita_status_colorscale = d3.scaleOrdinal()
   .domain(keys)  
-  .range(["red","orange","yellow","green"]); 
+  .range(["red","orange","#F7DC6F","green"]); 
 
 var promises = [
     d3.json("data/india-districts-2019-734.json"),    
-    d3.csv("data/district_gw_status.csv",  function(d) {
-       gw_dist_status.set(d.DISTRICT_CODE, d.GW_Status); 
-       unique_states.add(d.STATE);       
-      }),
-    d3.csv("data/district_rainfall_2021.csv")    
+    d3.csv("data/Per_Capita_Water_Availability.csv",  function(d) {
+      percapita_dist_status.set(d.DISTRICT_CODE, d.Current2025); 
+       unique_states.add(d.State);       
+      })      
   ]
 
 Promise.all(promises).then(function(data){
-    process_geo(data[0],data[2])
+    process_geo(data[0])
 }).catch(function(error){
     console.log(error);
 });
@@ -123,8 +122,8 @@ function process_geo(districts,district_rainfall,state_rainfall){
             .on('mouseout', onMouseOut) 
 
 svg.selectAll("path")
-      .transition().duration(1000)
-      .attr('fill',function(d) { return gw_status_colorscale(gw_dist_status.get(d.properties.dt_code)); })
+      .transition().duration(500)
+      .attr('fill',function(d) { return percapita_status_colorscale(percapita_dist_status.get(d.properties.dt_code)); })
       .attr("stroke","white")
 
 //Mouseover 
@@ -143,7 +142,9 @@ function onMouseOver(event,d){
 //Mouse move
 function onMouseMove(event,d){
 
-tooltip_div.html("<span>District: " + d.properties.district + "<br/>" + "State: " + d.properties.st_nm + "<br /></span>")
+tooltip_div.html("<span>District: " + d.properties.district + "<br/>" 
+  + "State: " + d.properties.st_nm + "<br />"
+  + "PerCapita Water: " + percapita_dist_status.get(d.properties.dt_code) + "<br /></span>")
 .style("left", (event.pageX + 10) + "px")
 .style("top", (event.pageY - 15) + "px")
 .transition()
@@ -168,7 +169,7 @@ const annotations = [
   {
     note: {
       label: "",
-      title: "Over-Exploited Zones",
+      title: "Absolute Scarcity",
       // align: "left",  // right or left
       wrap: 250,   
       // padding: 10  // More = text lower
@@ -182,39 +183,12 @@ const annotations = [
      },
     type: d3.annotationCalloutCircle,
     subject: {
-      radius: 100,
+      radius: 70,
       radiusPadding: 5
     },
     color: ["purple"],
-    x: 405,
-    y: 300,
-    dx: -150,
-    dy: -50,  
- 
-  },
-  {
-    note: {
-      label: "",
-      title: "Over-Exploited Zones",
-      // align: "left",  // right or left
-      wrap: 250,   
-      // padding: 10  // More = text lower
-    },
-    connector: {
-       end: "none",        // Can be none, or arrow or dot
-       type: "line",      // "curve" with point
-       //point: 3,  //goes with curve
-       lineType : "vertical",    
-       endScale: 2     // dot size
-     },
-    type: d3.annotationCalloutCircle,
-    subject: {
-      radius: 100,
-      radiusPadding: 5
-    },
-    color: ["purple"],
-    x: 500,
-    y: 560,
+    x: 480,
+    y: 630,
     dx: -150,
     dy: -50,  
  
@@ -230,10 +204,10 @@ const makeAnnotations = d3.annotation()
   .annotations(annotations)
   
 
-d3.select("#scene4_district_country_map")
+d3.select("#scene6_district_country_map")
   .select("svg")   
   .append("g")
-  .attr("class","scene4-annotation")
+  .attr("class","scene6-annotation")
   // .attr("transform","translate("+margin.left+","+margin.top+")")
   .call(makeAnnotations) 
      
@@ -253,7 +227,7 @@ svg.selectAll("legend_rect")
     .attr("height",20)
     .attr("stroke","grey")
     .attr("stroke-width",0.7)
-    .style("fill", function(d){ return gw_status_colorscale(d)})
+    .style("fill", function(d){ return percapita_status_colorscale(d)})
 
 // Add text for each rect    
 svg.selectAll("legend_label")
@@ -262,7 +236,7 @@ svg.selectAll("legend_label")
   .append("text")
     .attr("x", WD - 160)
     .attr("y", function(d,i){ return 100 + i*25}) 
-    .style("fill", function(d){ return gw_status_colorscale(d)})
+    .style("fill", function(d){ return percapita_status_colorscale(d)})
     .text(function(d){ return d})
     .attr("text-anchor", "left")
     .style("alignment-baseline", "middle")

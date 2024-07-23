@@ -1,5 +1,7 @@
 #intro-bar-chart,
-#scene4_district_country_map {
+#scene4_district_country_map,
+#scene5_district_country_map,
+#scene6_district_country_map {
   display: flex;
   flex-direction: column-reverse;
   justify-content: center;
@@ -72,30 +74,58 @@
     fill: rgb(15, 153, 238);
   }
 
-  .scene5_maps {
+  .scene7_maps {
     display: flex;
-    width: 100%;
+    /* min-width: 0; */
+    height: 750px;   
+    /* border: 1px solid black; */
+    padding:5px 5px 5px 5px;
   }
   
-  .scene5_maps_child  {
-    /* flex: 1; */
-    /* border: 1px solid lightgrey; */
+  /* .scene7_maps_child  {
+    flex: 1;
+    border: 1px solid blue; 
+    padding:5px 5px 5px 5px;
+    text-align: center;
+    min-width: 0;
     height: 600px;
     margin: 10px;
     padding: 1rem 1rem;
-  }
+  } */
 
-  #scene5_district_state_map {
-    flex-grow: 1;   
-    margin-left: 200px;
+ 
+  #scene7_district_state_map {
+    display: flex;
+    justify-content: center;
+    /* flex-grow: 1;    */
+    /* margin-left: 200px; */
+    /* min-width: 0; */
+    padding:5px 5px 5px 5px;
+    /* border: 5px solid rgb(41, 147, 208);  */
+    width: 50%;
    
   }
-  #scene5_district_country_map {
+  
+  #scene7_district_country_map {
+    /* display: flex; */
+    /* justify-content: center; */
     /* flex-grow: 1; */
-    margin-right: 200px;
-   
+    /* margin-right: 200px; */
+    /* min-width: 0; */
+    padding:5px 5px 5px 5px;
+    /* border: 5px solid rgb(208, 41, 175);  */
+    width: 50%;
   }
 
+  #scene7_district_state_map_svg{
+    /* border: 10px solid rgb(41, 147, 208);   */
+    width: 100%;    
+  }
+
+  #scene7_district_country_map_svg {
+    /* border: 10px solid rgb(208, 41, 175);   */
+    width: 100%;
+  }
 
 
 .viz_button {
@@ -182,4 +212,10 @@ hr {
 
 .annotation-subject{
   pointer-events: none;
+}
+
+
+input[type="radio"] {
+  display: inline;
+  margin-right: 10px;
 }

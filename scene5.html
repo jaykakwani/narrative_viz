@@ -11,40 +11,31 @@
     <!-- Load d3.js libraries -->
     <script src='https://d3js.org/d3.v6.min.js'></script>    
     <script src="https://unpkg.com/topojson-client@3"></script>
-
-    <!-- <script src="https://d3js.org/topojson.v2.min.js"></script> -->
-    <!-- <script type="module" src="https://unpkg.com/topojson-client@3"></script> -->
+   <!-- Load d3-annotation -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3-annotation/2.5.1/d3-annotation.min.js"></script>
 </head>
 
 <body>
     <div id='header'>
-        <h1 style="text-align:center; padding-top:1px; color: rgb(110, 104, 104);">Explore India's Rainfall Statistics</h1>
+        <h1 style="text-align:center; padding-top:1px; color: rgb(110, 104, 104);">India Rain Water Levels</h1>
         <hr>
     </div>
+
     <!-- Texts -->
-    <div id='scene4_text_41'>
-        <p class="chart-caption">With climate change, rainfall pattern is becoming erratic and difficult to predict and plan for.
+    <div id='scene5_text_31'>
+        <p class="chart-caption"> With climate change, rainfall pattern is becoming erratic and difficult to predict and plan for.
             The number of consecutive years with excess or scanty rainfall is increasing every decade. 
             This has severe impact on weather, agriculture, natural disasters, and other linked areas. </p>
     </div>    
-    <br>
-    <div id="state_selection_div" style="text-align:center;">
-        <label for="select-state" id="select-state-label">Select State</label>
-        <select id="select-state" style="margin-left: 20px;"></select>
-    </div>
-    <div class='scene5_maps'>        
-        
-        <div class='scene5_maps_child' id="scene5_district_state_map">                             
-        </div>
-        <div class='scene5_maps_child' id="scene5_district_country_map">
-        </div>        
-
+    <div class='scene5_maps'>
+        <div class='scene5_maps_child' id="scene5_district_country_map">  
+        </div>       
     </div>
     <div style="text-align: center;">
         <a href="scene4.html"><button class="viz_button">Back</button></a>    
-        <a href="index.html"><button class="viz_button">Start</button></a>  
-    </div>
+        <a href="scene6.html"><button class="viz_button">Next</button></a>  
+        </div>
     <!-- Load custom scripts -->
-    <script type="text/javascript" src='scripts/district_state_map.js' charset='utf-8'></script>  
+    <script type="text/javascript" src='scripts/rainwater_district_country_map.js' charset='utf-8'></script>  
 </body>
 </html>

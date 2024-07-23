@@ -2,7 +2,8 @@
 //config var and add svg
 
 
-var WD = 800, HT = 600
+// var WD = 800, HT = 600
+var WD = screen.availWidth, HT = screen.availHeight
 var margin = { left: 20, right: 20, top: 20, bottom: 50 }
 var width = WD - margin.left - margin.right
 var height = HT - margin.top - margin.bottom
@@ -13,20 +14,42 @@ var state_json_files = new Map();
 var state_geometry = new Map();
 var unique_states = new Set();
 var defaultOptionName = "ASSAM";
+var defaultRadioOptionName = "rainfall";
 
+//rainfall
 var rain_dist_status = new Map();
 var rain_st_status = new Map();
 
 var rain_dist_recorded = new Map();
 var rain_st_recorded = new Map();
 
-var keys = ['Large-Deficient', 'Deficient', 'Normal', 'Excess','Large-Excess' ]
+var rain_keys = ['Large-Deficient', 'Deficient', 'Normal', 'Excess','Large-Excess' ]
 
 var rain_status_colorscale = d3.scaleOrdinal()
-  .domain(keys)  
+  .domain(rain_keys)  
   .range(["yellow","orange","green","lightblue","dodgerblue"]); 
 
+//percapita
+var percapita_dist_status = new Map();
+var unique_states = new Set();
 
+var percapita_keys = ['Absolute scarcity [<500 m3]', 'Scarcity [500−1000 m3]', 'Stress [1000−1700 m3]', 'No Stress [>1700 m3]' ]
+
+var percapita_status_colorscale = d3.scaleOrdinal()
+  .domain(percapita_keys)  
+  .range(["red","orange","#F7DC6F","green"]); 
+
+
+ //gwstatus
+ var gw_dist_status = new Map();
+
+var gw_keys = ['Over-exploited', 'Critical', 'Semi-critical', 'Safe' ]
+
+var gw_status_colorscale = d3.scaleOrdinal()
+  .domain(gw_keys)  
+  .range(["red","orange","yellow","green"]); 
+
+  
 //tooltip
 var tooltip_state_div = d3.select("body").append("div")
      .attr("id", "tooltip_state_map")
@@ -89,7 +112,7 @@ var promises = [
     d3.json("data/state/uttarakhand.json"), 
     d3.json("data/state/uttarpradesh.json"),
     d3.json("data/state/westbengal.json"),
-    d3.json("data/india_states.json"),               
+    d3.json("data/india_states.json"),                 
     d3.csv("data/district_rainfall_2021.csv", function(d) {
       let rain_annual = +d.Annual;
       let rain_state = '';
@@ -127,6 +150,7 @@ var promises = [
          
      }),
     d3.csv("data/state_rainfall_2021.csv",function(d){
+      
       unique_states.add(d.State); 
 
       let rain_annual = +d.Annual;
@@ -161,13 +185,20 @@ var promises = [
               break;  
       }
     
-    })
+    }),
+    d3.csv("data/Per_Capita_Water_Availability.csv",  function(d) {
+        percapita_dist_status.set(d.DISTRICT_CODE, d.Current2025); 
+        //  unique_states.add(d.State);       
+        }),
+    d3.csv("data/district_gw_status.csv",  function(d) {
+            gw_dist_status.set(d.DISTRICT_CODE, d.GW_Status); 
+            // unique_states.add(d.STATE);       
+           })      
   ]
 
 Promise.all(promises).then(function(data){
         
-    // console.log(rain_dist_status)
-   
+     
     //load state drop-down
     let unique_states_array = Array.from(unique_states).sort();
     
@@ -228,7 +259,7 @@ Promise.all(promises).then(function(data){
     state_json_files.set("WEST BENGAL",data[35]);
 
 
-    plot_state_map(defaultOptionName);
+    plot_state_map(defaultRadioOptionName,defaultOptionName);
     plot_country_map(data[36],defaultOptionName);
 
 }).catch(function(error){
@@ -236,11 +267,8 @@ Promise.all(promises).then(function(data){
 });
 
 
-
-
-
 //process initial data func
-function plot_state_map(OptionName) {
+function plot_state_map(RadioOptionName,OptionName) {
 
     // console.log("Inside plot_state_map with "+OptionName);   
 
@@ -260,7 +288,7 @@ function plot_state_map(OptionName) {
     
     // console.log(feature_collection);
 
-    var proj = d3.geoMercator().translate([WD/2,HT/2])
+    var proj = d3.geoMercator()//.translate([WD/2,HT/2])
     var path = d3.geoPath().projection(proj);;
 
     // Compute the angular distance between bound corners
@@ -271,24 +299,25 @@ function plot_state_map(OptionName) {
     proj.scale(scale).center(center);
     
     //clear div
-    d3.select("#scene5_district_state_map").selectAll('*').remove();
+    d3.select("#scene7_district_state_map").selectAll('*').remove();
 
     //setup svg
-    var svg = d3.select("#scene5_district_state_map")
-             .append("svg")                
-                 .attr("width",WD)
-                 .attr("height",HT)
+    var svg = d3.select("#scene7_district_state_map")
+             .append("svg")
+                 .attr("id","scene7_district_state_map_svg")                
+                 .attr("width",width/2)
+                 .attr("height",height)                 
              .append("g")
               .attr("class","geo");
               
 
-
+    if (RadioOptionName == "rainfall") {
     //load state map
     svg.selectAll("path")
         .data(feature_collection)
         .enter().append("path")             
              .attr("d", path)
-             .attr("transform", "scale(0.9,0.9) translate(50,50)")
+             .attr("transform", "scale(0.7,0.7) translate(50,250)")
              .attr("class",OptionName)             
              .attr('fill',function(d) { return rain_status_colorscale(rain_dist_status.get(d.properties.dt_code)); })            
              .on('mouseover', function onMouseOver(event,d){
@@ -339,7 +368,7 @@ function plot_state_map(OptionName) {
 
 // Add one rect in the legend for each name.   
     svg.selectAll("legend_rect")
-    .data(keys)
+    .data(rain_keys)
     .enter()
     .append("rect")    
     .attr("x", 10)
@@ -353,7 +382,7 @@ function plot_state_map(OptionName) {
 
 // Add text for each rect      
     svg.selectAll("legend_label")
-    .data(keys)
+    .data(rain_keys)
     .enter()
     .append("text")
     .attr("x", 35)
@@ -366,20 +395,199 @@ function plot_state_map(OptionName) {
     .attr("stroke","grey")
     .attr("stroke-width",0.7) 
 
+  } //rainfall-if
+
+
+  if (RadioOptionName == "percapita") {
+    //load state map
+    svg.selectAll("path")
+        .data(feature_collection)
+        .enter().append("path")             
+             .attr("d", path)
+             .attr("transform", "scale(0.7,0.7) translate(50,250)")
+             .attr("class",OptionName)             
+             .attr('fill',function(d) { return percapita_status_colorscale(percapita_dist_status.get(d.properties.dt_code)); })            
+             .on('mouseover', function onMouseOver(event,d){
+        
+                d3.select(this).transition()
+                     .duration('50')
+                     .attr('opacity', '.85')
+                
+                tooltip_state_div.transition()
+                     .duration(50)
+                     .style("opacity", 1)
+            
+              
+              }    ) 
+             .on('mousemove',function(event,d){
+  
+                tooltip_state_div.html("<span>District: " + d.properties.district + "<br/>" 
+                    + "State: " + d.properties.st_nm + "<br />"
+                    + "PerCapita Water: " + percapita_dist_status.get(d.properties.dt_code) + "<br /></span>")
+                    // (rain_dist_recorded.get(d.properties.dt_code).Annual == "" ? ("No Data Available") : (rain_dist_recorded.get(d.properties.dt_code).Annual) + " mm")
+                    // +"</span>")
+                            .style("left", (event.pageX + 10) + "px")
+                            .style("top", (event.pageY - 15) + "px")
+                            .transition()
+                            .duration(200) // ms
+                            .style("opacity", 1)   
+ 
+                ;})               
+             .on('mouseout', function onMouseOut(event,d){
+ 
+                d3.select(this).transition()
+                 .duration('50')
+                 .attr('opacity', '1')
+                 
+                 tooltip_state_div.transition()
+                 .duration(50)
+                 .style("opacity", 0)
+                 
+                 
+               
+                 }) 
+
+
+    // remove old elements
+    svg.exit().remove();            
+
+
+   //Add Legends
+
+
+// Add one rect in the legend for each name.   
+    svg.selectAll("legend_rect")
+    .data(percapita_keys)
+    .enter()
+    .append("rect")    
+    .attr("x", 10)
+    .attr("y", function(d,i){ return 10 + i*25 -10}) 
+    .attr("width", 15)
+    .attr("height",15)
+    .attr("stroke","grey")
+    .attr("stroke-width",0.7)
+    .style("fill", function(d){ return percapita_status_colorscale(d)})
+
+
+// Add text for each rect      
+    svg.selectAll("legend_label")
+    .data(percapita_keys)
+    .enter()
+    .append("text")
+    .attr("x", 35)
+    .attr("y", function(d,i){ return 10 + i*25}) 
+    .style("fill", function(d){ return percapita_status_colorscale(d)})
+    .text(function(d){ return d})
+    .attr('font-size',12)
+    .attr("text-anchor", "left")
+    .style("alignment-baseline", "middle")
+    .attr("stroke","grey")
+    .attr("stroke-width",0.7) 
+
+  } //percapita-if
+
+
+  if (RadioOptionName == "gwstatus") {
+    //load state map
+    svg.selectAll("path")
+        .data(feature_collection)
+        .enter().append("path")             
+             .attr("d", path)
+             .attr("transform", "scale(0.7,0.7) translate(50,250)")
+             .attr("class",OptionName)             
+             .attr('fill',function(d) { return gw_status_colorscale(gw_dist_status.get(d.properties.dt_code)); })            
+             .on('mouseover', function onMouseOver(event,d){
+        
+                d3.select(this).transition()
+                     .duration('50')
+                     .attr('opacity', '.85')
+                
+                tooltip_state_div.transition()
+                     .duration(50)
+                     .style("opacity", 1)
+            
+              
+              }    ) 
+             .on('mousemove',function(event,d){
+  
+                tooltip_state_div.html("<span>District: " + d.properties.district + "<br/>" 
+                    + "State: " + d.properties.st_nm + "<br />"
+                    + "Groundwater Status: "+ gw_dist_status.get(d.properties.dt_code) + "<br/></span>")
+                            .style("left", (event.pageX + 10) + "px")
+                            .style("top", (event.pageY - 15) + "px")
+                            .transition()
+                            .duration(200) // ms
+                            .style("opacity", 1)   
+ 
+                ;})               
+             .on('mouseout', function onMouseOut(event,d){
+ 
+                d3.select(this).transition()
+                 .duration('50')
+                 .attr('opacity', '1')
+                 
+                 tooltip_state_div.transition()
+                 .duration(50)
+                 .style("opacity", 0)
+                 
+                 
+               
+                 }) 
+
+
+    // remove old elements
+    svg.exit().remove();            
+
+
+   //Add Legends
+
+
+// Add one rect in the legend for each name.   
+    svg.selectAll("legend_rect")
+    .data(gw_keys)
+    .enter()
+    .append("rect")    
+    .attr("x", 10)
+    .attr("y", function(d,i){ return 10 + i*25 -10}) 
+    .attr("width", 15)
+    .attr("height",15)
+    .attr("stroke","grey")
+    .attr("stroke-width",0.7)
+    .style("fill", function(d){ return gw_status_colorscale(d)})
+
+
+// Add text for each rect      
+    svg.selectAll("legend_label")
+    .data(gw_keys)
+    .enter()
+    .append("text")
+    .attr("x", 35)
+    .attr("y", function(d,i){ return 10 + i*25}) 
+    .style("fill", function(d){ return gw_status_colorscale(d)})
+    .text(function(d){ return d})
+    .attr('font-size',12)
+    .attr("text-anchor", "left")
+    .style("alignment-baseline", "middle")
+    .attr("stroke","grey")
+    .attr("stroke-width",0.7) 
+
+  } //gwstatus-if
+
 
 };
 
 
 function plot_country_map(mapdata,initialselection) {
 
-  var projection = d3.geoMercator().fitSize([WD*0.90, HT*0.90], mapdata);
-  var path = d3.geoPath().projection(projection);
+var projection = d3.geoMercator().fitSize([width*0.7, height*0.7], mapdata);
+var path = d3.geoPath().projection(projection);
 
 
-const countrysvg = d3.select('#scene5_district_country_map') 
+const countrysvg = d3.select('#scene7_district_country_map') 
   .append('svg')
+    .attr("id","scene7_district_country_map_svg")
     .attr('class', 'India') 
-    .attr('width', width)
+    .attr('width', width/2)
     .attr('height', height)
   
 var g = countrysvg.append("g");
@@ -393,6 +601,7 @@ countrysvg.selectAll("path")
   .enter()
   .append('path')
   .attr('id',function(d,i) {return feature_arr[i].properties.ST_NM.replaceAll(" ","-");})
+  .attr("transform", "scale(0.9,0.9) translate(-20,100)")
   .attr('class','INDIA')
   .attr('d', path)
   .attr("fill","lightgrey")
@@ -441,11 +650,12 @@ countrysvg.selectAll("path")
     // Affordance 
 
 var aff_svg = d3.select("body")
-    .select("#scene5_district_country_map")
+       .select("#scene7_affordance_div")
+    // .select("#scene7_district_country_map")
     .append("svg")
         .attr("id","svg-affordance")             
-        .attr("width", width + margin.left + margin.right)
-        .attr("height", 30);
+        .attr("width", width)
+        .attr("height", 40);
     
     var affordance_g = aff_svg.append("g")
               .attr("class","accordance");
@@ -456,26 +666,63 @@ var aff_svg = d3.select("body")
     .attr("stroke","grey")
     .attr("stroke-width",0.7)
     .style("fill", "grey")
-    .attr("transform", "scale(0.4,0.4) translate("+1.5*WD+",20)")
+    .attr("transform", "scale(0.4,0.4) translate("+1.7*width+",0)")
     
     affordance_g.append("text")
     .attr("id","affordance-txt")
-    .attr("x", WD-290)
-    .attr("y", margin.top) 
+    .attr("x", 0.7* width)
+    .attr("y", 12) 
     .style("fill", "grey")
-    .text("Hover mouse over either map to see tooltip")
-    .attr("text-anchor", "left")
+    .text("Hover mouse over either map to see tooltip;")
+    .attr("text-anchor", "right")
     .style("alignment-baseline", "middle")
     .attr("stroke","black")
     .attr("stroke-width",0.3)
     .attr("font-style","italic")
 
+    affordance_g.append("text")
+    .attr("id","affordance-txt")
+    .attr("x", 0.7*width)
+    .attr("y", 30) 
+    .style("fill", "grey")
+    .text("Selected State is shown in the right map")
+    .attr("text-anchor", "right")
+    .style("alignment-baseline", "middle")
+    .attr("stroke","black")
+    .attr("stroke-width",0.3)
+    .attr("font-style","italic")
+
+// //Add Legends
+
+
+// // Add one rect in the legend for each name.   
+// countrysvg.selectAll("legend_rect")
+// .append("rect")    
+// .attr("x", 10)
+// .attr("y", 10) 
+// .attr("width", 15)
+// .attr("height",15)
+// .attr("stroke","grey")
+// .attr("stroke-width",0.7)
+// .style("fill", "darkgrey")
+
+
+// // Add text for each rect      
+// countrysvg.selectAll("legend_label")
+// .append("text")
+// .attr("x", 35)
+// .attr("y", 10) 
+// .style("fill", "grey")
+// .text("Selected State")
+// .attr('font-size',12)
+// .attr("text-anchor", "left")
+// .style("alignment-baseline", "middle")
+// .attr("stroke","grey")
+// .attr("stroke-width",0.7) 
+
 
 
 };
-
-
- 
 
 
 //Change Events Handling (State Dropdown)
@@ -487,7 +734,9 @@ d3.select("#select-state").on("change", function(d) {
     // run the updateChart function with this selected option
     //select_state_update(selectedOption)
 
-    plot_state_map(selectedOption); 
+    let checkedradio = d3.select('input[name="MetricRadioButton"]:checked').node().value;   
+    
+    plot_state_map(checkedradio,selectedOption); 
 
     //clear last
     d3.select('.India')
@@ -504,3 +753,9 @@ d3.select("#select-state").on("change", function(d) {
   })     
 
 
+  const buttons = d3.selectAll('input');
+  buttons.on('change', function(d) {
+  var button_option = this.value;
+  let current_state_selection = d3.select("#select-state").node().value; 
+  plot_state_map(button_option,current_state_selection);
+  });
