@@ -203,78 +203,51 @@ tooltip_div.transition()
 }
 
 // Annotation
-// const annotations = [
-//   {
-//     note: {
-//       label: "",
-//       title: "",
-//       // align: "left",  // right or left
-//       wrap: 250,   
-//       // padding: 10  // More = text lower
-//     },
-//     connector: {
-//        end: "none",        // Can be none, or arrow or dot
-//        type: "line",      // "curve" with point
-//        //point: 3,  //goes with curve
-//        lineType : "vertical",    
-//        endScale: 2     // dot size
-//      },
-//     type: d3.annotationCalloutCircle,
-//     subject: {
-//       radius: 100,
-//       radiusPadding: 5
-//     },
-//     color: ["purple"],
-//     x: 405,
-//     y: 300,
-//     dx: -150,
-//     dy: -50,  
+const annotations = [
+  {
+    note: {
+      label: "Mostly Rajasthan and Kachh region of Gujarat which are mostly desert areas",
+      title: "Water Deficiency Zone",
+      // align: "left",  // right or left
+      wrap: 250,   
+      // padding: 10  // More = text lower
+    },
+    connector: {
+       end: "none",        // Can be none, or arrow or dot
+       type: "line",      // "curve" with point
+       //point: 3,  //goes with curve
+       lineType : "vertical",    
+       endScale: 2     // dot size
+     },
+    type: d3.annotationCalloutCircle,
+    subject: {
+      radius: 80,
+      radiusPadding: 5
+    },
+    color: ["purple"],
+    x: 320,
+    y: 320,
+    dx: -60,
+    dy: -50,  
  
-//   },
-//   {
-//     note: {
-//       label: "",
-//       title: "",
-//       // align: "left",  // right or left
-//       wrap: 250,   
-//       // padding: 10  // More = text lower
-//     },
-//     connector: {
-//        end: "none",        // Can be none, or arrow or dot
-//        type: "line",      // "curve" with point
-//        //point: 3,  //goes with curve
-//        lineType : "vertical",    
-//        endScale: 2     // dot size
-//      },
-//     type: d3.annotationCalloutCircle,
-//     subject: {
-//       radius: 100,
-//       radiusPadding: 5
-//     },
-//     color: ["purple"],
-//     x: 500,
-//     y: 560,
-//     dx: -150,
-//     dy: -50,  
- 
-//   }
+  }
 
 
 
-// ]
+]
 
 
 // Add annotation to the chart
-// const makeAnnotations = d3.annotation()  
-//   .annotations(annotations)
+const makeAnnotations = d3.annotation()  
+  .annotations(annotations)
   
 
-// d3.select("#scene5_district_country_map")
-//   .select("svg")   
-//   .append("g")
-//   .attr("class","scene5-annotation")
-//   // .attr("transform","translate("+margin.left+","+margin.top+")")
-//   .call(makeAnnotations) 
+d3.select("#scene5_district_country_map")
+  .select("svg")   
+  .append("g")
+  .attr("class","scene5-annotation")
+  // .attr("transform","translate("+margin.left+","+margin.top+")")
+  .call(makeAnnotations) 
      
 
 // set attr pointer-events none for annotation to not block tooltips ( set in CSS)
